@@ -1,0 +1,41 @@
+textarea {
+    min-height: 400px;
+}
+
+#mailbox-view > div {
+    display: block;
+    height: 50px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+/* bg color if read */
+.row_true {
+    background-color: #ececec;
+}
+
+/* bg color if unread */
+.row_false {
+    background-color: white;
+}
+
+#mailbox-view > div:hover {
+    background-color: lightgrey;
+}
+
+.col0 {
+    width: 20em;
+    font-weight: bold;
+    float: left;
+    pointer-events: none;
+}
+
+.col1 {
+    font-style: italic;
+    pointer-events: none;
+}
+.col2 {
+    color: darkgrey;
+    float: right;
+    pointer-events: none;
+}

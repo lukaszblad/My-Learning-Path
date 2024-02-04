@@ -1,0 +1,20 @@
+{% extends "network/layout.html "%}
+
+{% block body %}
+    <h1 class="top_left_margin">{{ profile_user.username }}</h1>
+    <div class="left_margin">
+        <span>Followers: {{ followers }}</span>
+        <span>Follows: {{ followees }}</span>
+        {% if user.is_authenticated and user != profile_user %}
+            <form action="{% url 'profile' profile_user.username %}" method="post">
+                {% csrf_token %}
+                <input class="btn btn-primary" name="follow_button" type="submit" value="{{ button }}">
+            </form>
+        {% endif %}
+    </div>
+    <hr>
+
+    <h2 class="top_left_margin">Posts</h2>
+    {% include "network/posts.html" %}
+    {% include "network/pagination.html" %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% for post in posts %}
+<div id="{{ post.id }}" class='border post'>
+    {% comment %} AUTHOR {% endcomment %}
+    <a style="font-weight: bold; font-size: 20px;" href="{% url 'profile' post.author %}">{{ post.author }}</a>
+    {% comment %} CONTENT {% endcomment %}
+    <div id="content{{ post.id }}" >{{ post.content }}</div>
+    {% comment %} DATE {% endcomment %}
+    <div style="color: grey;">{{ post.datetime }}</div>
+    {% comment %} LIKES NUMBER {% endcomment %}
+    <span>&#10084</span>
+    <span id="likes-count{{ post.id }}"></span>
+    <br>
+    {% if user.is_authenticated %}
+        {% comment %} LIKE BUTTON {% endcomment %}
+        <button id="like-button{{ post.id }}" class="btn btn-primary"></button>
+        {% comment %} EDIT {% endcomment %}
+        {% if user == post.author %}
+            <button id="edit-button{{ post.id }}" class="btn btn-primary">Edit</button>
+        {% endif %}
+    {% endif %}
+</div>
+{% endfor %}

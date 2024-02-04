@@ -1,0 +1,120 @@
+body {
+  text-align: center;
+}
+
+header {
+  text-align: right;
+}
+
+a {
+  text-decoration: none;
+  font-family: Arial;
+  color: gray;
+  margin: 10px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  font-family: Arial;
+  font-size: 125px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 50vh;
+  width: 100vw;
+  margin-bottom: 30px;
+}
+
+.bar {
+  border: 1px solid grey;
+  height: 3vh;
+  width: 400px;
+  border-radius: 25px;
+  margin: 15px;
+}
+
+.button {
+  border: none;
+  height: 3vh;
+  width: 200px;
+  font-family: Arial;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.button:hover {
+  border: 2px solid lightgray;
+}
+
+#image {
+  font-family: Arial;
+  font-size: 20px;
+  color: lightgray;
+  margin-right: -300px;
+  margin-top: -50px;
+  margin-bottom: 27px;
+}
+
+#advanced_button {
+  background-color: #4285F4;
+  color: white;
+  border: none;
+  height: 3vh;
+  width: 200px;
+  font-family: Arial;
+  border-radius: 5px;
+  margin-left: 400px;
+}
+
+#advanced_button:hover {
+  border: 2px solid #1d5cc4;
+  height: 3vh;
+  width: 200px;
+  font-family: Arial;
+  border-radius: 5px;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td {
+  text-align: left;
+  vertical-align: center;
+  padding: 10px;
+  font-family: Arial;
+  font-size: 15px;
+}
+
+#info {
+  font-family: Arial;
+  font-size: 20px;
+  text-align: left;
+}
+
+#advanced_logo {
+  font-family: Arial;
+  font-size: 25px;
+  text-align: left;
+}
+
+#advanced_search {
+  display: flex;
+  height: 10vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: start;
+  font-family: Arial;
+  font-size: 25px;
+  color: #EA4335;
+  margin-left: 20px;
+}
+
+hr {
+  border: 1px solid lightgray;
+  margin-bottom: 20px;
+}

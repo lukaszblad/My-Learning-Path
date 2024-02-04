@@ -1,0 +1,61 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>{{ listing.title }}</h2>
+    {% if listing.image_url %}
+        <img src="{{ listing.image_url }}" height="500px" alt="{{ listing.description }}">
+    {% endif %}
+    <h3 style="margin-top: 30px;">Description:</h3>
+    <div>{{ listing.description }}</div>
+    <h3 style="margin-top: 30px;">Current price:</h3>
+    <div style="font-size: larger;">${{ listing.current_bid }}</div>
+    {% if user.is_authenticated %}
+        <form action="{% url 'listing' listing.id %}" method="post">
+            {% csrf_token %}
+             <!-- WATCHLIST -->
+            {% if watchlist %}
+                <input class="btn btn-primary" name="form" type="submit" value="Remove from watchlist" style="margin-bottom: 30px;"></input>
+            {% else %}
+                <input class="btn btn-primary" name="form" type="submit" value="Add to watchlist" style="margin-bottom: 30px;"></input>
+            {% endif %}
+            <!-- CLOSE LISTING -->
+            {% if user == listing.user and listing.active %}
+                <input class="btn btn-primary" name="form" type="submit" value="Close auction" style="margin-bottom: 30px;">
+            {% endif %}
+            <!-- PLACE BID -->
+            {% if listing.active %}
+                <input class="form-control" type="number" name="new_bid" placeholder="Bid" autocomplete="off" style="margin-bottom: 10px;">
+                <input class="btn btn-primary" name="form" type="submit" value="Place bid" style="margin-bottom: 30px;">
+            {% else %}
+                <div style="color: red; font-size: larger;">Auction closed</div>
+            {% endif %}
+        </form>
+    {% endif %}
+    <!-- CURRENT BIDDING USER  -->
+    {% if listing.active and bidding_user %}
+        <div>Current Bidding User: {{ bidding_user }}</div>
+    {% endif %}
+    <!-- CLOSED BID WINNER -->
+    {% if not listing.active and user == bidding_user %}
+    <div style="color: green; font-size: larger;">You Won the Auction</div>
+    {% endif %}
+    <!-- DESCRIPTION -->
+    <h3>Details:</h3>
+    <ul style="margin-bottom: 30px;">
+        <li>Listed by: {{ listing.user }}</li>
+        <li>Category: {{ category }}</li>
+    </ul>
+    <!-- COMMENTS -->
+    <!-- add comment -->
+    <form action="{% url 'listing' listing.id %}" method="post">
+        {% csrf_token %}
+        <textarea class="form-control" name="new_comment" placeholder="Comment the auction" autocomplete="off" style="margin-bottom: 10px;"></textarea>
+        <input class="btn btn-primary" name="form" type="submit" value="Add comment" style="margin-bottom: 10px;">
+    </form>
+    <!-- view comments -->
+    <h3>Comments:</h3>
+    {% for comment in comments %}
+        <div style="font-size: large; font-weight: bold;">{{ comment.user }}</div>
+        <div style="margin-bottom: 10px;">{{ comment.comment }}</div>
+    {% endfor %}
+{% endblock %}
